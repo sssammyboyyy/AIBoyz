@@ -1,0 +1,17 @@
+{
+  "pinecone": {
+    "index": "antigravity-brain",
+    "defaultNamespace": "system",
+    "topK": 5,
+    "includeMetadata": true
+  },
+  "localSearch": {
+    "endpoint": "http://localhost:8085/search",
+    "format": "json"
+  },
+  "contextBudget": {
+    "maxTokens": 4096,
+    "reservedForPrompt": 1024,
+    "reservedForOutput": 1024
+  }
+}

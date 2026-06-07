@@ -1,0 +1,6 @@
+mode: development
+failure_log: FAILURE_LOG.md
+target_rules:
+  - C:\Users\samue\.gemini\config\skills\global-intelligence\SKILL.md
+  - AGENTS.md
+max_retries: 1

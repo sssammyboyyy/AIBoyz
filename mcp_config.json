@@ -1,0 +1,7 @@
+{
+  "scraper": {
+    "type": "native-mcp",
+    "server": "chrome-devtools-mcp",
+    "description": "Chrome DevTools Protocol via Antigravity native MCP. Selected per R1 report."
+  }
+}

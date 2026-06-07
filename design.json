@@ -1,0 +1,50 @@
+{
+  "colorPalette": {
+    "primary": {
+      "base": "hsl(220, 80%, 55%)",
+      "light": "hsl(220, 80%, 65%)",
+      "dark": "hsl(220, 80%, 45%)"
+    },
+    "secondary": {
+      "base": "hsl(340, 70%, 60%)",
+      "light": "hsl(340, 70%, 70%)",
+      "dark": "hsl(340, 70%, 50%)"
+    },
+    "background": "hsl(210, 25%, 12%)",
+    "surface": "hsl(210, 25%, 15%)",
+    "error": "hsl(0, 80%, 55%)"
+  },
+  "typography": {
+    "fontFamily": "'Inter', sans-serif",
+    "baseSize": "16px",
+    "headingScale": 1.25,
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "unit": "4px",
+    "radius": "8px",
+    "gutter": "16px"
+  },
+  "elevation": {
+    "level1": "0 1px 3px rgba(0,0,0,0.12)",
+    "level2": "0 4px 6px rgba(0,0,0,0.15)"
+  },
+  "components": {
+    "button": {
+      "padding": "8px 16px",
+      "borderRadius": "${spacing.radius}",
+      "background": "${colorPalette.primary.base}",
+      "color": "#ffffff"
+    },
+    "card": {
+      "background": "${colorPalette.surface}",
+      "boxShadow": "${elevation.level1}",
+      "borderRadius": "${spacing.radius}",
+      "padding": "${spacing.gutter}"
+    }
+  },
+  "export": {
+    "css": ".theme {\n  --color-primary: ${colorPalette.primary.base};\n  --color-primary-light: ${colorPalette.primary.light};\n  --color-primary-dark: ${colorPalette.primary.dark};\n  --color-secondary: ${colorPalette.secondary.base};\n  --color-background: ${colorPalette.background};\n  --color-surface: ${colorPalette.surface};\n  --font-family: ${typography.fontFamily};\n  --base-size: ${typography.baseSize};\n}\n"
+  }
+}
+
