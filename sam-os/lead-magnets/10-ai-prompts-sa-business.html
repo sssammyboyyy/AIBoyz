@@ -6,61 +6,543 @@
 <title>10 AI Prompts Every SA Business Should Steal</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --bg: #fafaf9; --card: #ffffff; --text: #1c1917; --muted: #78716c; --accent: #d97706; --accent-light: #fef3c7; --border: #e7e5e4; --radius: 12px; }
-  body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+  :root {
+    --bg: #fafaf9;
+    --card: #ffffff;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --muted: #a8a29e;
+    --accent: #d97706;
+    --accent-hover: #b45309;
+    --accent-light: #fef3c7;
+    --accent-glow: rgba(217,119,6,0.15);
+    --border: #e7e5e4;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --purple: #9333ea;
+    --purple-light: #f3e8ff;
+    --transition: 0.2s ease;
+  }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
   .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
-  .cover { background: linear-gradient(135deg, #1c1917 0%, #44403c 100%); color: #fff; padding: 60px 24px 48px; text-align: center; margin: 0 -20px; }
-  .cover h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
-  .cover .subtitle { font-size: 18px; color: #d6d3d1; margin-bottom: 24px; }
-  .cover .stats { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 14px; color: #a8a29e; }
-  .cover .stats span { background: rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 8px; }
-  .cover .author { margin-top: 32px; font-size: 14px; color: #a8a29e; }
-  .section { padding: 40px 0; }
-  .section-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
-  .divider { border: none; height: 1px; background: var(--border); margin: 0 -20px; }
-  .quick { border-left: 4px solid #16a34a; padding-left: 0; }
-  .growth { border-left: 4px solid #2563eb; padding-left: 0; }
-  .deep { border-left: 4px solid #9333ea; padding-left: 0; }
-  .tier-label { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; letter-spacing: 0.3px; }
-  .tier-quick { background: #dcfce7; color: #166534; }
-  .tier-growth { background: #dbeafe; color: #1e40af; }
-  .tier-deep { background: #f3e8ff; color: #6b21a8; }
-  .prompt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
-  .prompt-card .number { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .prompt-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-  .prompt-card .label { font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 16px; margin-bottom: 4px; }
-  .prompt-card p { font-size: 15px; color: #44403c; margin-bottom: 8px; }
-  .prompt-box { background: #f5f5f4; border-left: 3px solid var(--accent); padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.7; margin: 8px 0; font-family: 'Courier New', monospace; white-space: pre-wrap; }
-  .example-box { background: var(--accent-light); border-radius: 8px; padding: 16px; font-size: 14px; margin: 8px 0; }
-  .example-box strong { color: var(--accent); }
-  .cta-inline { background: #f5f5f4; border: 1px dashed var(--accent); border-radius: var(--radius); padding: 24px; text-align: center; margin: 32px 0; }
-  .cta-inline p { font-size: 15px; color: #44403c; margin-bottom: 4px; }
-  .cta-btn { display: inline-block; background: var(--accent); color: #fff; font-weight: 700; font-size: 16px; padding: 14px 32px; border-radius: 8px; text-decoration: none; margin-top: 12px; }
-  .cta-btn:hover { background: #b45309; }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, #1c1917 0%, #44403c 100%);
+    color: #fff;
+    padding: 64px 24px 48px;
+    text-align: center;
+    margin: 0 -20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover h1 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .cover .subtitle {
+    font-size: 18px;
+    color: #d6d3d1;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .cover .stats {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #a8a29e;
+    position: relative;
+  }
+  .cover .stats span {
+    background: rgba(255,255,255,0.08);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .cover .author {
+    margin-top: 32px;
+    font-size: 13px;
+    color: #78716c;
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+
+  /* Data wall */
+  .data-wall {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 32px 0 24px;
+  }
+  .stat-badge {
+    flex: 1;
+    min-width: 180px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-badge .num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-badge .desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* Intro */
+  .intro p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  .intro strong { color: var(--text); }
+  .how-to {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 24px 0;
+    box-shadow: var(--shadow);
+  }
+  .how-to h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .how-to ol {
+    padding-left: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .how-to li { margin-bottom: 8px; }
+  .how-to li:last-child { margin-bottom: 0; }
+  .how-to code {
+    background: var(--accent-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* Quiz */
+  .quiz {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .quiz h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .quiz .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .quiz label {
+    display: block;
+    padding: 11px 16px;
+    margin-bottom: 6px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all var(--transition);
+  }
+  .quiz label:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  .quiz input[type="radio"] { margin-right: 10px; accent-color: var(--accent); }
+
+  /* Section headers */
+  .section { padding: 36px 0; }
+  .tier-header { margin-bottom: 20px; }
+  .tier-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .tier-quick { background: var(--green-light); color: var(--green); }
+  .tier-growth { background: var(--blue-light); color: var(--blue); }
+  .tier-deep { background: var(--purple-light); color: var(--purple); }
+  .tier-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .tier-header p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* Prompt cards */
+  .prompt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow var(--transition);
+  }
+  .prompt-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .prompt-card .number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .prompt-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .prompt-card .hook {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* Form fields */
+  .form-fields { margin-bottom: 20px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group:last-child { margin-bottom: 0; }
+  .field-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .field-group input,
+  .field-group textarea,
+  .field-group select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    transition: border-color var(--transition);
+    outline: none;
+  }
+  .field-group input:focus,
+  .field-group textarea:focus,
+  .field-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+  .field-group textarea {
+    min-height: 60px;
+    resize: vertical;
+  }
+  .field-group select {
+    cursor: pointer;
+    appearance: auto;
+  }
+  .field-group input::placeholder,
+  .field-group textarea::placeholder {
+    color: var(--muted);
+  }
+
+  /* Prompt output */
+  .prompt-output {
+    background: #f5f5f4;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .prompt-box {
+    padding: 16px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 60px;
+    color: var(--text);
+  }
+  .prompt-box .placeholder {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Copy button */
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+    margin-top: 8px;
+    width: fit-content;
+  }
+  .copy-btn:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .copy-btn.copied {
+    background: var(--green-light);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .iteration-tip {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+    background: #f5f5f4;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent);
+    margin-top: 8px;
+  }
+  .iteration-tip strong { color: var(--text); }
+
+  /* CTA inline */
+  .cta-inline {
+    background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+    border: 1.5px dashed var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    margin: 28px 0;
+  }
+  .cta-inline h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .cta-inline p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .cta-inline .highlight {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 30px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    margin-top: 12px;
+    transition: background var(--transition);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .cta-btn:hover { background: var(--accent-hover); }
   .cta-btn-sm { font-size: 14px; padding: 10px 24px; }
-  .cta-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
-  .closing { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; margin-bottom: 40px; }
-  .closing h2 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
-  .closing p { font-size: 15px; color: #44403c; margin-bottom: 8px; }
-  .value-ladder { text-align: left; background: #f5f5f4; border-radius: var(--radius); padding: 24px; margin: 16px 0; font-size: 14px; line-height: 2; }
-  .value-ladder strong { color: var(--accent); }
-  .quote-bar { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 0 -20px 32px; text-align: center; }
-  .quote-bar blockquote { font-size: 15px; font-style: italic; color: #44403c; margin-bottom: 8px; line-height: 1.5; }
-  .quote-bar cite { font-size: 13px; color: var(--muted); font-style: normal; }
-  .stat-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
-  .stat-badge { background: var(--accent-light); color: var(--text); font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; }
-  .quiz { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
-  .quiz h3 { font-size: 16px; margin-bottom: 12px; }
-  .quiz label { display: block; padding: 10px 16px; margin-bottom: 8px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 14px; transition: all 0.15s; }
-  .quiz label:hover { border-color: var(--accent); background: var(--accent-light); }
-  .quiz input { margin-right: 10px; }
-  .post-cta { display: none; background: #dcfce7; border: 1px solid #16a34a; border-radius: var(--radius); padding: 32px 24px; text-align: center; margin-bottom: 40px; }
-  .post-cta h3 { font-size: 20px; font-weight: 800; color: #166534; margin-bottom: 12px; }
-  .post-cta p { font-size: 14px; color: #44403c; line-height: 1.7; }
-  .post-cta .steps { text-align: left; max-width: 400px; margin: 16px auto; }
-  .post-cta .steps li { margin-bottom: 8px; font-size: 14px; color: #44403c; }
-  @media (max-width: 480px) { .cover { padding: 40px 20px 36px; } .cover h1 { font-size: 24px; } .prompt-card { padding: 20px; } }
+  .cta-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* Quote bar */
+  .quote-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin: 32px 0;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .quote-bar blockquote {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .quote-bar cite {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: normal;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .quote-bar cite:last-child { margin-bottom: 0; }
+
+  /* Closing */
+  .closing {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    margin: 32px 0;
+    box-shadow: var(--shadow-md);
+  }
+  .closing h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .closing .sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .value-ladder {
+    text-align: left;
+    background: #f5f5f4;
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 16px 0 24px;
+    font-size: 14px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+  .value-ladder strong { color: var(--text); }
+  .value-ladder .accent { color: var(--accent); font-weight: 600; }
+  .value-ladder .check { color: var(--green); }
+  .price {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    margin: 16px 0 4px;
+  }
+  .price small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .urgency {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  /* Post-CTA */
+  .post-cta {
+    display: none;
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    margin: 32px 0;
+  }
+  .post-cta .check-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+  .post-cta h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .post-cta .sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .post-cta .steps {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .post-cta .steps ol {
+    padding-left: 20px;
+  }
+  .post-cta .steps li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .post-cta .signoff {
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .cover { padding: 44px 20px 36px; }
+    .cover h1 { font-size: 24px; }
+    .cover .subtitle { font-size: 16px; }
+    .prompt-card { padding: 20px; }
+    .closing { padding: 28px 20px; }
+    .data-wall { flex-direction: column; }
+    .stat-badge { min-width: unset; }
+  }
 </style>
 </head>
 <body>
@@ -70,9 +552,9 @@
     <h1>10 AI Prompts Every SA Business Should Steal</h1>
     <p class="subtitle">Copy-paste solutions for the problems keeping you up at night</p>
     <div class="stats">
-      <span>4 quick wins (5 min)</span>
-      <span>3 growth tools (15 min)</span>
-      <span>3 deep strategies (30 min)</span>
+      <span>4 quick wins &mdash; 5 min each</span>
+      <span>3 growth tools &mdash; 15 min each</span>
+      <span>3 deep strategies &mdash; 30 min each</span>
     </div>
     <p class="author">From the Vantage Community &mdash; AI for SA small business</p>
   </div>
@@ -80,430 +562,465 @@
 
 <div class="container">
 
-<div class="section">
-
-  <div class="stat-row">
-    <span class="stat-badge">69% of SA biz owners say repetitive tasks are their #1 time-waster</span>
-    <span class="stat-badge">56% of SA SMEs now use AI tools</span>
-    <span class="stat-badge">30-50% of admin workload is automatable</span>
+<div class="data-wall">
+  <div class="stat-badge">
+    <span class="num">30-50%</span>
+    <span class="desc">of your week spent on admin you could automate</span>
   </div>
+  <div class="stat-badge">
+    <span class="num">56-60%</span>
+    <span class="desc">of SA SMEs already use AI &mdash; competitors aren't waiting</span>
+  </div>
+  <div class="stat-badge">
+    <span class="num">69%</span>
+    <span class="desc">of SA business owners say repetitive tasks are #1 time-waster</span>
+  </div>
+</div>
 
-  <p style="font-size:16px; margin-bottom:12px;">SA business owners waste <strong>30-50% of their week</strong> on admin they could automate. A Cape Town retailer saved <strong>R350,000 in 4 months</strong> using AI inventory tracking. A Johannesburg firm automated <strong>60% of customer inquiries in 6 weeks</strong>.</p>
+<div class="intro">
+  <p>SA business owners waste <strong>30-50% of their week</strong> on admin they could automate. A Cape Town retailer saved <strong>R350,000 in 4 months</strong> using AI. A Johannesburg firm automated <strong>60% of customer inquiries in 6 weeks</strong>.</p>
+  <p>You're not behind. You're busy. These 10 prompts are the shortcut.</p>
+</div>
 
-  <p style="font-size:15px; color:#44403c; margin-bottom:20px;">You're not behind. You're busy. These 10 prompts are the shortcut.</p>
-
-  <p style="font-size:15px; color:#44403c; margin-bottom:24px;"><strong>How to use this:</strong></p>
-  <ol style="padding-left:20px; font-size:15px; color:#44403c;">
-    <li style="margin-bottom:8px;">Pick the prompt that matches your biggest headache right now</li>
-    <li style="margin-bottom:8px;">Copy the text inside the box &mdash; fill in the <code style="background:#f5f5f4; padding:2px 6px; border-radius:4px;">[bracketed bits]</code> with your details</li>
-    <li style="margin-bottom:0px;">Paste into ChatGPT, Claude, Gemini, or your AI tool of choice</li>
+<div class="how-to">
+  <h3>How to use this</h3>
+  <ol>
+    <li>Pick the prompt that matches your biggest headache right now</li>
+    <li>Answer the 2-3 questions &mdash; the prompt fills in automatically with your details</li>
+    <li>Copy the completed prompt and paste into ChatGPT, Claude, or Gemini</li>
   </ol>
 </div>
 
-<hr class="divider">
-
-<div class="section">
-
 <div class="quiz" id="quiz">
   <h3>What describes you best?</h3>
-  <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Pick one &mdash; I'll show the most relevant prompts first.</p>
+  <p class="hint">Pick one &mdash; I'll show the most relevant prompts first.</p>
   <label><input type="radio" name="biztype" value="product" onchange="filterPrompts('product')"> I run a product-based business (retail, food, manufacturing)</label>
   <label><input type="radio" name="biztype" value="service" onchange="filterPrompts('service')"> I run a service-based business (consulting, trades, agency)</label>
   <label><input type="radio" name="biztype" value="both" onchange="filterPrompts('both')"> I run both</label>
   <label><input type="radio" name="biztype" value="all" onchange="filterPrompts('all')" checked> Show me everything</label>
 </div>
 
+<!-- ═══════════════ TIER 1: Quick Wins ═══════════════ -->
+
 <div id="tier1">
-  <div class="tier-label tier-quick">Quick Win &mdash; 5 minutes</div>
-  <div class="section-title">Copy, paste, done.</div>
-  <p class="section-sub">These take 5 minutes tops. Instant relief.</p>
+<div class="tier-header">
+  <span class="tier-label tier-quick">Quick Win &mdash; 5 minutes</span>
+  <h2>Copy, paste, done.</h2>
+  <p>These take 5 minutes tops. Instant relief for your biggest daily headaches.</p>
+</div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both,product" id="p1">
   <div class="number">Quick Win 1</div>
-  <h3>Write a week of social captions in 10 minutes</h3>
-  <p class="label">The problem it solves</p>
-  <p>You spend Sunday nights staring at a blank screen trying to come up with posts for the week. By Wednesday you've run out of ideas and end up sharing a meme that has nothing to do with your business.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I run a [type of business] in [city/suburb, SA]. My target customer is [describe your customer]. I sell [product/service]. I want you to write 7 social media captions for this week (Monday to Sunday). Each caption must:
-- Be under 150 characters
-- Solve one specific problem my customer has
-- End with a question or a call to action
-- Sound like a real person, not a marketing bot
+  <h3>Respond to a negative review without sounding defensive</h3>
+  <p class="hook">A bad review lands. Your first instinct is to defend yourself &mdash; but that response will be public forever. You need a reply that protects your reputation without sounding like a corporate robot.</p>
 
-Topics for each day:
-Monday: [topic]
-Tuesday: [topic]
-Wednesday: [topic]
-Thursday: [topic]
-Friday: [topic]
-Saturday: [topic]
-Sunday: [topic]
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p1-biz">What type of business do you run?</label>
+      <input type="text" id="p1-biz" data-key="biz" oninput="updatePrompt(1)" placeholder="e.g. restaurant, plumbing, accounting">
+    </div>
+    <div class="field-group">
+      <label for="p1-review">Paste the review or describe what it says:</label>
+      <textarea id="p1-review" data-key="review" oninput="updatePrompt(1)" placeholder="e.g. 'Waited over an hour for my food and when it arrived it was cold.'"></textarea>
+    </div>
+    <div class="field-group">
+      <label for="p1-fair">Is this review fair?</label>
+      <select id="p1-fair" data-key="fairness" onchange="updatePrompt(1)">
+        <option value="fair">Fair &mdash; they have a genuine point</option>
+        <option value="unfair" selected>Unfair &mdash; it's not accurate or exaggerated</option>
+        <option value="partly">Partly fair &mdash; some truth, some exaggeration</option>
+      </select>
+    </div>
+  </div>
 
-Write them in a table with columns: Day, Caption, Best time to post in SA.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example for a Jozi baker:</strong><br><br>
-    <strong>Monday:</strong> "Your Monday deserves fresh croissants. We baked a batch at 5am &mdash; they're still warm. Grab yours before the morning rush takes them." (post 7am)<br><br>
-    <strong>Wednesday:</strong> "Load shedding Stage 4 and your kids are hungry. Our pre-ordered lunchboxes don't need electricity. Just a smile when you collect." (post 10am)<br><br>
-    <strong>Friday:</strong> "Three words: Friday. Afternoon. Scones. Last batch comes out at 3pm. First come, first served." (post 1pm)
+  <div class="prompt-output">
+    <div class="prompt-box" id="p1-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p1-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the reply, paste it back and say: <em>"Make this sound warmer / more formal / shorter / more apologetic."</em>
   </div>
 </div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both" id="p2">
   <div class="number">Quick Win 2</div>
-  <h3>Respond to customer enquiries on WhatsApp in bulk</h3>
-  <p class="label">The problem it solves</p>
-  <p>You get 30+ WhatsApp messages a day. "Do you have this in stock?" "How much?" "Can you deliver to [suburb]?" You're typing the same answers over and over.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I run a [type of business] in SA. I get a lot of WhatsApp enquiries asking the same things. Write me 10 ready-to-use WhatsApp reply templates (each under 200 characters) for these situations:
+  <h3>Ask a happy client for a referral (without feeling pushy)</h3>
+  <p class="hook">You've got clients who love your work. You know they'd send people your way if you just asked. But asking for referrals feels awkward &mdash; like you're imposing on the relationship.</p>
 
-1. "Do you have [product] in stock?" (with and without stock)
-2. "How much does [service] cost?" (give a price range)
-3. "Do you deliver to [suburb]?" (yes/no with area list)
-4. "What are your hours?" (include load shedding adjustment)
-5. "Can I get a discount?" (polite refusal)
-6. "How do I pay?" (include EFT and PayFast options)
-7. "When can you start?" (give timeline with realistic buffer)
-8. "Can you send me a quote?" (capture their email/WhatsApp)
-9. "Do you do [specific request you don't offer]?" (referral)
-10. "I'm ready to buy. What's next?" (clear next step)
-
-Tone: friendly but efficient. Leave blanks like [suburb] where I need to fill in.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Real case:</strong> A Johannesburg financial advisory firm deployed an AI assistant to handle routine client inquiries. Within <strong>6 weeks, 60% of inbound queries were automated</strong>. Customer satisfaction scores <strong>rose 28%</strong>. Their team went from answering the same questions all day to focusing on complex client work.<br><br>
-    <strong>Example reply:</strong> "Sure! You can EFT to [bank name], account [number], or pay instantly via PayFast [link]. Once payment reflects, I'll confirm within 30 minutes."
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p2-biz">What business do you run?</label>
+      <input type="text" id="p2-biz" data-key="biz" oninput="updatePrompt(2)" placeholder="e.g. graphic design, electrical, catering">
+    </div>
+    <div class="field-group">
+      <label for="p2-service">What's your best or most popular service right now?</label>
+      <input type="text" id="p2-service" data-key="service" oninput="updatePrompt(2)" placeholder="e.g. logo redesign, DB board upgrade, event platters">
+    </div>
+    <div class="field-group">
+      <label for="p2-client">Describe your ideal referral client:</label>
+      <input type="text" id="p2-client" data-key="client" oninput="updatePrompt(2)" placeholder="e.g. small business owners in Fourways who need branding">
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>More SA customers message businesses on WhatsApp than call or email. Having 10 pre-written replies saves hours a day and makes you look professional even during load shedding when you're on mobile data.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p2-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p2-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the message templates, reply with: <em>"Rewrite these as WhatsApp messages under 200 characters each."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="product">
+<div class="prompt-card" data-tags="product,service,both" id="p3">
   <div class="number">Quick Win 3</div>
-  <h3>Tell customers what's back in stock (without sounding spammy)</h3>
-  <p class="label">The problem it solves</p>
-  <p>You finally got stock after two weeks of "sorry, we're out." You need to tell your regulars without blasting them with a generic "SALE SALE SALE" message.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I own a [type of business] in [city, SA]. The following items are back in stock after being out for [duration]:
+  <h3>Generate enquiries when business is quiet</h3>
+  <p class="hook">It's Tuesday morning and the phone hasn't rung. You need to create urgency &mdash; but "SALE SALE SALE" messages get ignored or muted. You need a genuine reason for people to reach out today.</p>
 
-[List items with brief details]
-
-Write 3 WhatsApp broadcast messages I can send to my customer list:
-
-1. A "back in stock" message for regular customers (warm, appreciative)
-2. A "limited stock" message for people who asked about it (personalised feel)
-3. A one-liner for my WhatsApp status (under 100 characters)
-
-Each message must:
-- Sound like a real person, not a business
-- Include a call to action ("reply to order", "first come first served", etc.)
-- NOT use ALL CAPS, multiple exclamation marks, or emojis
-- Feel like a favour, not a sales pitch
-
-Also include a 30-character WhatsApp status version.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Real case:</strong> A Cape Town retail chain with 8 locations implemented AI predictive inventory. Within 4 months, excess inventory <strong>dropped 32%</strong>, saving the business <strong>over R350,000 in the first quarter</strong>. The system analysed sales trends and local seasonal patterns to predict what would sell &mdash; and what wouldn't.<br><br>
-    <strong>Example message:</strong> "Hi [name], you asked about the rattan baskets a few weeks ago. We got a small batch in this morning. First come on collection &mdash; I'll hold one for you if you reply by 2pm."
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p3-biz">What business do you run?</label>
+      <input type="text" id="p3-biz" data-key="biz" oninput="updatePrompt(3)" placeholder="e.g. gym, bakery, IT support">
+    </div>
+    <div class="field-group">
+      <label for="p3-offer">What's one offer or service you can promote right now?</label>
+      <input type="text" id="p3-offer" data-key="offer" oninput="updatePrompt(3)" placeholder="e.g. free consultation, 10% off first session, R50 lunch special">
+    </div>
+    <div class="field-group">
+      <label for="p3-area">What area do you serve?</label>
+      <input type="text" id="p3-area" data-key="area" oninput="updatePrompt(3)" placeholder="e.g. Randburg and surrounding, Cape Town CBD">
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>SA runs on WhatsApp broadcasts, not email newsletters. The tone mirrors the friendly, transactional relationship local customers expect &mdash; not loud American-style sales language.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p3-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p3-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the message options, reply with: <em>"Pick the most urgent-sounding one and shorten it to a WhatsApp broadcast."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="service,both">
+<div class="prompt-card" data-tags="product,service,both" id="p4">
   <div class="number">Quick Win 4</div>
-  <h3>Chase late payments without losing the client</h3>
-  <p class="label">The problem it solves</p>
-  <p>You invoiced them three weeks ago. They've read your WhatsApp messages. You're stuck between "I need that money" and "I don't want to seem desperate."</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I'm owed R[amount] by a client who is [number] days late on payment. Our relationship is [good / strained / professional / friendly]. I've already sent [number] reminders. I need you to write 4 messages I can send in sequence:
+  <h3>Respond to customer enquiries on WhatsApp in bulk</h3>
+  <p class="hook">You get 30+ WhatsApp messages a day asking the same things: "Do you have this?" "How much?" "Can you deliver?" You're typing the same answers over and over instead of working on your business.</p>
 
-1. A gentle nudge (assume they forgot)
-2. A firmer follow-up (day 5 after first message)
-3. A "let's sort this out" message (day 10 &mdash; offer payment plan if needed)
-4. A final notice (day 14 &mdash; mention interest or service pause)
-
-Each message must:
-- Not damage the relationship
-- Offer a specific way to pay (EFT, PayFast payment link, cash)
-- Be sendable via WhatsApp or email (give both versions)
-- Include a blank for the invoice number
-
-If the client is genuinely struggling, include an option for a part-payment arrangement.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Message 1 (gentle nudge):</strong> "Hi [name], hope all's well. Just circling back on invoice #[number] for R[amount] sent on [date]. No rush &mdash; please just confirm when you expect to process it. You can EFT or pay via this PayFast link: [link]. Thanks!"<br><br>
-    <strong>Message 3 (part-payment option):</strong> "Hi [name], I understand cash flow can be tight. Would it help to split the R[amount] into two payments &mdash; say half now and half in two weeks?"
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p4-biz">What business do you run?</label>
+      <input type="text" id="p4-biz" data-key="biz" oninput="updatePrompt(4)" placeholder="e.g. clothing store, driving school, locksmith">
+    </div>
+    <div class="field-group">
+      <label for="p4-questions">What are the 3 most common questions customers ask you on WhatsApp?</label>
+      <textarea id="p4-questions" data-key="questions" oninput="updatePrompt(4)" placeholder="e.g. 1. Do you have size 8 in stock? 2. How much is delivery to Soweto? 3. Can I pay with EFT?"></textarea>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>Late payment is a massive problem for SA small businesses. The prompt offers PayFast links and part-payment arrangements, which are culturally appropriate in the SA small-business context.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p4-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p4-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you have the templates, reply with: <em>"Add a friendly emoji to each one and keep it under 150 characters."</em>
+  </div>
 </div>
 
 <div class="cta-inline">
-  <p><strong>Want 50 more prompts like these?</strong></p>
-  <p style="font-size:13px;">They're inside Vantage &mdash; updated monthly, built for SA businesses.</p>
-  <p style="font-size:13px; font-weight:700; color:var(--accent);">First month free for founding members.</p>
-  <a href="#" class="cta-btn cta-btn-sm" onclick="showPostCta()">See what's inside Vantage</a>
+  <h4>Want 50 more prompts like these?</h4>
+  <p>They're inside Vantage &mdash; updated monthly, built for SA businesses.</p>
+  <p class="highlight">First month free for founding members. Lock in R399/month forever.</p>
+  <button class="cta-btn cta-btn-sm" onclick="showPostCta()">See what's inside Vantage</button>
 </div>
-
 </div>
 
 <hr class="divider">
+
+<!-- ═══════════════ TIER 2: Growth Tools ═══════════════ -->
 
 <div id="tier2">
-  <div class="tier-label tier-growth">Growth Tool &mdash; 15 minutes</div>
-  <div class="section-title">A bit more setup. Bigger payoff.</div>
-  <p class="section-sub">These take 15 minutes to learn and save hours every week.</p>
+<div class="tier-header">
+  <span class="tier-label tier-growth">Growth Tool &mdash; 15 minutes</span>
+  <h2>A bit more setup. Bigger payoff.</h2>
+  <p>These take 15 minutes to learn and save hours every week.</p>
+</div>
 
-<div class="prompt-card" data-tags="service,both">
+<div class="prompt-card" data-tags="service,both" id="p5">
   <div class="number">Growth Tool 1</div>
-  <h3>Turn a voice note into a professional proposal</h3>
-  <p class="label">The problem it solves</p>
-  <p>A client calls and you scribble notes on a napkin. Now you need to send a proper quote before they cool off &mdash; but typing it all out takes 20 minutes you don't have.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I dictated a voice note about a quote I need to send. Here's the transcription:
+  <h3>Follow up on a quote that went quiet</h3>
+  <p class="hook">You sent a quote last week. They said "let me think about it." Now it's been 5 days of silence. You don't want to seem desperate, but you also don't want to lose the sale to someone who follows up.</p>
 
-[paste your voice note transcript here]
-
-Turn this into a professional proposal/quote that includes:
-1. A short thank-you opener referencing our call
-2. The scope of work in 3-4 bullet points (SA rand pricing if mentioned)
-3. Payment terms (include YOCO or PayFast if applicable)
-4. A clear "what happens next" section
-
-Tone: warm and professional. Not stiff. I run a [type of business] in SA.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example:</strong> You record: "Hey, so Karen from the gift shop in Durbanville wants a website. She's got about 15 products. Needs payment via PayFast. Budget is around R8k. Wants it in two weeks."<br><br>
-    The prompt returns a full proposal with scope, pricing in Rands, PayFast link placeholder, and a timeline with Eskom buffer days.
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p5-biz">What business do you run?</label>
+      <input type="text" id="p5-biz" data-key="biz" oninput="updatePrompt(5)" placeholder="e.g. web design, painting, plumbing">
+    </div>
+    <div class="field-group">
+      <label for="p5-quote">What did you quote them for?</label>
+      <input type="text" id="p5-quote" data-key="quote" oninput="updatePrompt(5)" placeholder="e.g. full kitchen renovation, website redesign, 6-month retainer">
+    </div>
+    <div class="field-group">
+      <label for="p5-amount">Quote amount (optional):</label>
+      <input type="text" id="p5-amount" data-key="amount" oninput="updatePrompt(5)" placeholder="e.g. R12,500">
+    </div>
+    <div class="field-group">
+      <label for="p5-days">How many days since you sent it?</label>
+      <input type="number" id="p5-days" data-key="days" oninput="updatePrompt(5)" value="5" min="1" max="90">
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>SA runs on voice notes. This prompt turns a 30-second WhatsApp voice note into a proposal the client takes seriously. Including "Eskom buffer days" shows you're realistic about delivery timelines.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p5-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p5-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the follow-up messages, reply with: <em>"Make the third one more direct &mdash; include a deadline to decide."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both,product" id="p6">
   <div class="number">Growth Tool 2</div>
-  <h3>Write ad variations that don't sound like ads</h3>
-  <p class="label">The problem it solves</p>
-  <p>You need to run a Facebook or Google ad, but every time you write one it sounds like a bad infomercial. You write one version, it flops, and you're out R500 with nothing to show.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I want to run a [Facebook / Instagram / Google] ad for my [type of business] in [city/suburb, SA].
+  <h3>Handle the "your price is too high" objection</h3>
+  <p class="hook">A potential client loves your work. Then they see the price. "That's more than I expected." You don't want to discount, but you don't want to lose them either. You need a response that defends your value without being defensive.</p>
 
-My offer: [describe your offer, price]
-Target customer: [describe who you want to reach]
-Budget: R[amount] per day
-
-Write 5 ad variations with different angles:
-
-1. The "solves this specific problem" angle (direct, practical)
-2. The "here's what other SA customers say" angle (social proof)
-3. The "curiosity gap" angle (makes them click to find out)
-4. The "limited time / limited stock" angle (urgency without yelling)
-5. The "straight talk: here's what you get" angle (no fluff, just facts)
-
-Each ad:
-- Must fit Facebook's primary text (under 125 characters optimal)
-- Must include a headline (under 40 characters)
-- Must NOT use words like "revolutionary", "game-changer", or "disrupt"
-- Should feel like a friend telling another friend about a good thing
-
-Also suggest 3 images that would work for this ad (describe them so I can create or find them).</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example for a Pretoria dog groomer:</strong><br><br>
-    <strong>Text:</strong> Your dog is shedding everywhere. We'll fix that in 90 minutes. R350 for a full groom (wash, cut, nails, ears). Includes pickup in the Garsfontein area.<br><br>
-    <strong>Headline:</strong> Full groom, R350, we collect.<br><br>
-    <strong>Suggested image:</strong> Before-and-after of a fluffy dog, "Garsfontein" text overlay.
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p6-biz">What business do you run?</label>
+      <input type="text" id="p6-biz" data-key="biz" oninput="updatePrompt(6)" placeholder="e.g. photography, renovations, consulting">
+    </div>
+    <div class="field-group">
+      <label for="p6-product">What product or service are they buying?</label>
+      <input type="text" id="p6-product" data-key="product" oninput="updatePrompt(6)" placeholder="e.g. full-day wedding shoot, bespoke kitchen cabinets, quarterly strategy session">
+    </div>
+    <div class="field-group">
+      <label for="p6-price">What's your price?</label>
+      <input type="text" id="p6-price" data-key="price" oninput="updatePrompt(6)" placeholder="e.g. R8,500">
+    </div>
+    <div class="field-group">
+      <label for="p6-objection">What exactly did they say about the price?</label>
+      <textarea id="p6-objection" data-key="objection" oninput="updatePrompt(6)" placeholder="e.g. 'I was expecting around R5,000' or 'That's double what I was quoted elsewhere'"></textarea>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>Most SA small businesses waste ad spend on generic copy. This prompt forces suburb-level targeting &mdash; how local SA businesses actually win customers.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p6-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p6-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the response, reply with: <em>"Rewrite this as a WhatsApp voice note script I can record in 60 seconds."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="service,both">
+<div class="prompt-card" data-tags="service,both" id="p7">
   <div class="number">Growth Tool 3</div>
-  <h3>Turn a client catch-up into a one-page summary</h3>
-  <p class="label">The problem it solves</p>
-  <p>You had a 30-minute client meeting. Now you need to send a summary, action items, and next steps. You'll do it later &mdash; but "later" means the client follows up asking "did you get my email?"</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I just had a meeting with a client. Here are my rough notes (bullet points, messy, from my phone):
+  <h3>Chase late payments without losing the client</h3>
+  <p class="hook">You invoiced them three weeks ago. They've read your WhatsApp messages. You're stuck between "I need that money" and "I don't want to seem desperate." Late payments are the #1 cash flow killer for SA small businesses.</p>
 
-[paste your meeting notes here]
-
-Turn this into a professional one-page meeting summary with:
-
-1. A 1-line subject line for email
-2. What was discussed (3-5 bullet points, plain language)
-3. Decisions made (bold these)
-4. Action items in a table: Who | What | By When
-5. Next meeting: [date if discussed, or "TBC"]
-
-Format it so I can copy-paste directly into an email. No greetings or sign-offs needed (I'll add those). Keep it to one screen max.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Subject:</strong> Summary: Website project &mdash; decisions & next steps | 21 June<br><br>
-    <strong>Discussed:</strong><br>
-    - New logo colours: navy + orange (agreed, final version by Friday)<br>
-    - Homepage layout: client prefers the "story-first" option over grid<br>
-    - <strong>Decided:</strong> Go live date pushed to 15 July (waiting on product photos)<br><br>
-    <strong>Action items:</strong> You: Send photos by Mon 24 Jun | Us: Deliver logo by Fri 28 Jun<br>
-    <strong>Next meeting:</strong> Mon 1 Jul, 10am
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p7-biz">What business do you run?</label>
+      <input type="text" id="p7-biz" data-key="biz" oninput="updatePrompt(7)" placeholder="e.g. consulting, cleaning services, graphic design">
+    </div>
+    <div class="field-group">
+      <label for="p7-amount">Amount owed:</label>
+      <input type="text" id="p7-amount" data-key="amount" oninput="updatePrompt(7)" placeholder="e.g. R5,200">
+    </div>
+    <div class="field-group">
+      <label for="p7-days">How many days overdue?</label>
+      <input type="number" id="p7-days" data-key="days" oninput="updatePrompt(7)" value="14" min="1" max="180">
+    </div>
+    <div class="field-group">
+      <label for="p7-relationship">What's your relationship with this client?</label>
+      <select id="p7-relationship" data-key="relationship" onchange="updatePrompt(7)">
+        <option value="good" selected>Good &mdash; we've worked together before</option>
+        <option value="strained">Strained &mdash; they're slow to pay generally</option>
+        <option value="new">New &mdash; this is their first invoice</option>
+      </select>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>SA business owners take calls on the move &mdash; in the car, between deliveries, or during load shedding. This prompt turns messy phone notes into a professional output the client takes seriously.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p7-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p7-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the sequence, reply with: <em>"Make message 2 and 3 shorter &mdash; WhatsApp-length. And include a PayFast payment link placeholder."</em>
+  </div>
 </div>
 
 <div class="cta-inline">
-  <p><strong>Want us to build these with you?</strong></p>
-  <p style="font-size:13px;">Every Thursday at 7pm, we run a live session where we build one of these tools together. Recorded if you can't make it.</p>
-  <a href="#" class="cta-btn cta-btn-sm" onclick="showPostCta()">Join the next live session</a>
+  <h4>Want us to build these with you?</h4>
+  <p>Every Thursday at 7pm, we run a live session where we build one of these tools together. Recorded if you can't make it.</p>
+  <button class="cta-btn cta-btn-sm" onclick="showPostCta()">Join the next live session</button>
 </div>
-
 </div>
 
 <hr class="divider">
+
+<!-- ═══════════════ TIER 3: Deep Strategy ═══════════════ -->
 
 <div id="tier3">
-  <div class="tier-label tier-deep">Deep Strategy &mdash; 30 minutes</div>
-  <div class="section-title">Set up once. Pay off all year.</div>
-  <p class="section-sub">These take 30 minutes but give you a permanent advantage.</p>
+<div class="tier-header">
+  <span class="tier-label tier-deep">Deep Strategy &mdash; 30 minutes</span>
+  <h2>Set up once. Pay off all year.</h2>
+  <p>These take 30 minutes but give you a permanent advantage.</p>
+</div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both" id="p8">
   <div class="number">Deep Strategy 1</div>
-  <h3>Reschedule your day when Eskom ruins your plan</h3>
-  <p class="label">The problem it solves</p>
-  <p>You planned your day around clients. Then Eskom drops a Stage 6 surprise. Your fridge defrosts, your internet dies, and your carefully scheduled Zoom calls are now impossible.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I'm in [city/suburb, SA]. Eskom just announced [stage] load shedding from [start time] to [end time]. Here's what I had planned for today:
+  <h3>Re-engage a lead that went cold</h3>
+  <p class="hook">You had a great conversation with a prospect 3 months ago. They were interested. Then life happened. Now you don't know how to restart the conversation without sounding like a desperate salesperson.</p>
 
-[List your planned tasks]
-
-I run a [type of business] from home or a small office. I have a [UPS / generator / inverter / nothing]. Please rewrite my day so that:
-
-- Tasks needing internet go in the [available power window]
-- Offline tasks (paperwork, phone calls, physical prep) go during load shedding
-- Client appointments are rescheduled with a polite template I can WhatsApp them
-- I don't lose more than 2 hours of productive time
-
-Give me a side-by-side table: original plan vs revised plan.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example for a Cape Town consultant (Stage 4, 10am-2pm):</strong><br><br>
-    <strong>8-10am:</strong> Batch 3 client calls back-to-back (internet available)<br>
-    <strong>10am-12pm:</strong> Load shedding &mdash; write proposals offline, organise files<br>
-    <strong>12-2pm:</strong> Load shedding &mdash; errands, lunch<br>
-    <strong>2-4pm:</strong> Internet back &mdash; send emails, update CRM<br><br>
-    <strong>Client reschedule:</strong> "Hi [name], Eskom surprised us with Stage 4. Our 11am call won't work without internet. Can we move to 2pm?"
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p8-biz">What business do you run?</label>
+      <input type="text" id="p8-biz" data-key="biz" oninput="updatePrompt(8)" placeholder="e.g. real estate, marketing agency, landscaping">
+    </div>
+    <div class="field-group">
+      <label for="p8-lead">What were they interested in?</label>
+      <input type="text" id="p8-lead" data-key="lead" oninput="updatePrompt(8)" placeholder="e.g. garden redesign, social media management, property listing">
+    </div>
+    <div class="field-group">
+      <label for="p8-since">How long since you last spoke?</label>
+      <select id="p8-since" data-key="since" onchange="updatePrompt(8)">
+        <option value="1month">About a month</option>
+        <option value="3months" selected>2-3 months</option>
+        <option value="6months">4-6 months</option>
+        <option value="year">Over 6 months</option>
+      </select>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>Only in SA do you need an AI prompt to outsmart Eskom. This prompt considers UPS vs inverter vs nothing, and adapts to specific load shedding stages &mdash; pure South African business reality.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p8-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p8-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the re-engagement messages, reply with: <em>"Pick the one that sounds most natural and shorten it to 3 sentences for WhatsApp."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both,product" id="p9">
   <div class="number">Deep Strategy 2</div>
-  <h3>Get found on Google Maps in your area</h3>
-  <p class="label">The problem it solves</p>
-  <p>Someone searches "[your service] near me" on Google and your competitor shows up first. You're losing customers who are literally looking for you.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I run a [type of business] in [suburb/city, SA]. My Google Business profile exists but isn't ranking well for local searches. My competitors are [competitor 1, competitor 2].
+  <h3>Announce a price increase without losing customers</h3>
+  <p class="hook">Your costs have gone up. You need to raise prices. But you're scared your regular clients will take it personally or leave. The way you communicate the increase matters more than the increase itself.</p>
 
-Write me a local SEO action plan with:
-
-1. Five keywords SA customers actually search for (e.g. "plumber Randburg", "bakery near me Fourways") &mdash; not generic SEO jargon
-2. Three Google Business profile improvements I can make today (most people skip these)
-3. A 200-character "Google Business description" that includes my suburb, city, and main service (no hype, just facts)
-4. Five review request templates I can WhatsApp to past customers (SA-friendly, not pushy)
-5. Two local directories in SA I should list my business on (not Yelp, not Yellow Pages US)
-
-Keep it practical. No SEO theory.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example for a Centurion electrician:</strong> "Licensed electrician in Centurion, Pretoria. Domestic wiring, DB board upgrades, load shedding backup installations. Same-day service in Wierdapark, Zwartkop, Heuweloord."<br><br>
-    <strong>SA directories:</strong> SA Yellow Pages, Nic's Local Listings, SA Business Directory &mdash; all free.
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p9-biz">What business do you run?</label>
+      <input type="text" id="p9-biz" data-key="biz" oninput="updatePrompt(9)" placeholder="e.g. dog grooming, tutoring, monthly retainer service">
+    </div>
+    <div class="field-group">
+      <label for="p9-oldprice">What's the current price?</label>
+      <input type="text" id="p9-oldprice" data-key="oldprice" oninput="updatePrompt(9)" placeholder="e.g. R350">
+    </div>
+    <div class="field-group">
+      <label for="p9-newprice">What's the new price?</label>
+      <input type="text" id="p9-newprice" data-key="newprice" oninput="updatePrompt(9)" placeholder="e.g. R420">
+    </div>
+    <div class="field-group">
+      <label for="p9-reason">What's the reason for the increase? (honest answer)</label>
+      <select id="p9-reason" data-key="reason" onchange="updatePrompt(9)">
+        <option value="costs">My costs have gone up (supplies, rent, fuel)</option>
+        <option value="demand">I'm in higher demand and need to prioritise</option>
+        <option value="quality" selected>I've improved my offering and added more value</option>
+        <option value="inflation">General price adjustments across the board</option>
+      </select>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>Google "near me" searches are how SA customers find plumbers, electricians, and bakers. Most SA small businesses have a profile but haven't filled in the details &mdash; this prompt fixes that in 30 minutes.</p>
+
+  <div class="prompt-output">
+    <div class="prompt-box" id="p9-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p9-out')">Copy prompt</button>
+
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the announcement, reply with: <em>"Add a 'grandfather clause' &mdash; existing clients keep the old price for 3 months."</em>
+  </div>
 </div>
 
-<div class="prompt-card" data-tags="product,service,both">
+<div class="prompt-card" data-tags="service,both" id="p10">
   <div class="number">Deep Strategy 3</div>
-  <h3>Find what your competitors are missing</h3>
-  <p class="label">The problem it solves</p>
-  <p>You know who your competitors are, but you can't put your finger on why some customers choose you and others don't. You're flying blind with pricing, messaging, and offers.</p>
-  <p class="label">Copy this prompt</p>
-  <div class="prompt-box">I run a [type of business] in [city/suburb, SA]. My main competitors are:
+  <h3>Turn a client catch-up into a one-page summary</h3>
+  <p class="hook">You had a 30-minute client meeting. Now you need to send a summary, action items, and next steps. You'll do it later &mdash; but "later" means the client follows up asking "did you get my email?"</p>
 
-1. [Competitor name] - [what they do well]
-2. [Competitor name] - [what they do well]
-3. [Competitor name] - [what they do well]
-
-Here's what I know about my customers: [describe your typical customer, what they value, what they complain about]
-
-Analyse these competitors and give me:
-
-1. Three things they all do the same (the "industry default" &mdash; this is where I can differentiate)
-2. Two things none of them do (a gap I can exploit, specific to SA)
-3. One thing I do differently that matters more than I think
-4. A pricing observation: are they competing on price or value? Should I? (in SA Rands)
-5. Three words my brand should own that none of them claim
-
-This is not a generic SWOT analysis. Be specific. SA-specific.</div>
-  <p class="label">What you'll get</p>
-  <div class="example-box">
-    <strong>Example for a Pretoria coffee roaster:</strong><br><br>
-    <strong>They all do the same:</strong> Post coffee bag photos on Instagram. Free delivery over R300. Stock photography.<br><br>
-    <strong>The gap:</strong> None offer a "load shedding brew guide." None post their roast date publicly.<br><br>
-    <strong>Your 3 words:</strong> "Fresh. Local. Honest."<br><br>
-    <strong>Pricing:</strong> R185/bag is mid-range. You can go to R220 if you offer the freshest roast date and a WhatsApp subscription.
+  <div class="form-fields">
+    <div class="field-group">
+      <label for="p10-biz">What business do you run?</label>
+      <input type="text" id="p10-biz" data-key="biz" oninput="updatePrompt(10)" placeholder="e.g. consulting, web development, coaching">
+    </div>
+    <div class="field-group">
+      <label for="p10-notes">Paste your rough meeting notes here (bullet points, messy, from your phone):</label>
+      <textarea id="p10-notes" data-key="notes" oninput="updatePrompt(10)" placeholder="e.g. Spoke to Karen at the bakery - new website needed - she wants online ordering - budget R8k - needs PayFast - wants it before month end - also mentioned new logo maybe"></textarea>
+    </div>
   </div>
-  <p class="label">Why this works for SA</p>
-  <p>Generic competitor analysis misses local market realities. This prompt forces SA-specific gaps &mdash; load shedding adaptation, WhatsApp commerce, local delivery logistics &mdash; that national competitors ignore.</p>
-</div>
 
-</div>
+  <div class="prompt-output">
+    <div class="prompt-box" id="p10-out">Fill in the questions above &mdash; your prompt will appear here.</div>
+  </div>
+  <button class="copy-btn" onclick="copyPrompt('p10-out')">Copy prompt</button>
 
+  <div class="iteration-tip">
+    <strong>Now refine it:</strong> Once you get the summary, reply with: <em>"Shorten this to a WhatsApp message the client can read in 30 seconds."</em>
+  </div>
+</div>
 </div>
 
 <hr class="divider">
+
+<!-- ═══════════════ CLOSING ═══════════════ -->
 
 <div class="quote-bar">
   <blockquote>"What the technology does for you is a job of six people."</blockquote>
   <cite>&mdash; SA manufacturing business owner</cite>
-  <br><br>
-  <blockquote>"Facebook has been a game-changer. It's affordable and helps us reach customers we couldn't connect with otherwise."</blockquote>
-  <cite>&mdash; SA retailer</cite>
+  <blockquote>"I've got the mentality that it's for IT people... but I've been surprised how simple it is."</blockquote>
+  <cite>&mdash; SA entrepreneur</cite>
+  <blockquote>"One spelling mistake makes a person sound like they didn't even care in their work of writing."</blockquote>
+  <cite>&mdash; SA business owner on why accuracy matters</cite>
 </div>
 
 <div class="closing">
-  <h2>Your free lead magnet = 10 prompts.</h2>
-  <p style="color:var(--muted); margin-bottom:20px;">Now here's what most people realise after a week of using them:</p>
+  <h2>Your free lead magnet = 10 prompts. Now here's the catch.</h2>
+  <p class="sub">Most people realise this after a week of using them:</p>
 
   <div class="value-ladder">
-    <strong>Prompts alone are powerful.</strong> But they don't adapt when Eskom changes the schedule. They don't tell you which ones actually work. They don't update when new AI tools launch.<br><br>
-    <strong>Vantage gives you:</strong><br>
-    &check; 50+ prompts updated monthly &mdash; not a static PDF<br>
-    &check; Live walkthroughs every Thursday (recorded if you miss it)<br>
-    &check; Templates that update automatically when tools change<br>
-    &check; Other SA business owners solving the same problems<br>
-    &check; Direct WhatsApp access to the community<br><br>
-    <strong>R399/month.</strong> Founding members lock in the price forever. <strong>50 spots left.</strong> First month free.
+    <strong>Prompts alone are powerful.</strong> But they don't tell you which ones actually work. They don't adapt when your business changes. And finding the right prompt for each situation still takes time you don't have.<br><br>
+    <strong>Vantage gives you everything prompts can't:</strong><br>
+    <span class="check">&#10003;</span> <strong>50+ prompts</strong> updated monthly &mdash; not a static PDF<br>
+    <span class="check">&#10003;</span> <strong>Live walkthroughs</strong> every Thursday at 7pm (recorded)<br>
+    <span class="check">&#10003;</span> <strong>Templates</strong> that update automatically when tools change<br>
+    <span class="check">&#10003;</span> <strong>Other SA business owners</strong> solving the same problems<br>
+    <span class="check">&#10003;</span> <strong>Direct WhatsApp access</strong> to the community<br><br>
+    <span class="accent">The problem with prompts alone?</span> They don't adapt when your business changes. They don't tell you which ones actually work. And you figure it out alone.<br><br>
+    <strong>That's why R399/month is cheaper than figuring it out alone.</strong>
   </div>
 
-  <a href="#" class="cta-btn" onclick="showPostCta()">Join the Vantage waitlist &mdash; R399/mo</a>
+  <div class="price">R399 <small>/month</small></div>
+  <div class="urgency">Founding member pricing &mdash; 50 spots left &mdash; first month free</div>
+
+  <button class="cta-btn" onclick="showPostCta()">Join the Vantage waitlist</button>
   <p class="cta-note">First month free. Cancel anytime.</p>
 </div>
 
 <div class="post-cta" id="postCta">
+  <div class="check-icon">&#10003;</div>
   <h3>You're on the list!</h3>
+  <p class="sub">Here's what happens next:</p>
   <div class="steps">
-    <p style="font-weight:600;">What happens next:</p>
     <ol>
-      <li>Check your inbox &mdash; you'll get an email from Jacques within 5 minutes</li>
-      <li>That email contains your prompt pack download link + an invite to the Vantage WhatsApp community</li>
-      <li>Thursday at 7pm: join your first live session &mdash; we'll build Prompt #1 together</li>
+      <li><strong>Check your inbox</strong> &mdash; you'll get an email from Jacques within 5 minutes</li>
+      <li><strong>That email contains</strong> your prompt pack download link + an invite to the Vantage WhatsApp community</li>
+      <li><strong>Thursday at 7pm:</strong> join your first live session &mdash; we'll set up one of these prompts together in real time</li>
     </ol>
   </div>
-  <p style="margin-top:16px;">See you inside.</p>
-  <p style="font-weight:700;">&mdash; Sam &amp; Jacques</p>
+  <p class="signoff">See you inside. &mdash; Sam &amp; Jacques</p>
 </div>
 
 </div>
@@ -512,18 +1029,98 @@ This is not a generic SWOT analysis. Be specific. SA-specific.</div>
 function filterPrompts(val) {
   document.querySelectorAll('.prompt-card').forEach(function(card) {
     var tags = card.getAttribute('data-tags') || '';
-    if (val === 'all' || tags.indexOf(val) !== -1) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
+    card.style.display = (val === 'all' || tags.indexOf(val) !== -1) ? 'block' : 'none';
   });
 }
 
 function showPostCta() {
-  document.getElementById('postCta').style.display = 'block';
-  document.getElementById('postCta').scrollIntoView({ behavior: 'smooth' });
-  return false;
+  var el = document.getElementById('postCta');
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── Prompt builders ──
+
+var PROMPTS = {
+  1: function(v) {
+    var tone = v.fairness === 'fair' ? 'apologetic and accountable. Acknowledge they are right, thank them for the feedback, and explain what you will do to fix it' : v.fairness === 'partly' ? 'balanced. Acknowledge the valid parts of their concern, politely clarify any inaccuracies, and focus on solutions' : 'professional and measured. Thank them for the feedback, explain your side without sounding defensive, and invite them to discuss further privately';
+    return 'Act as a customer service manager for a South African ' + (v.biz || 'small business') + '. A customer left the following review:\n\n"' + (v.review || '[paste the review here]') + '"\n\nWrite a public reply to this review. The tone should be ' + tone + '.\n\nThe reply must:\n- Be under 150 words\n- Not blame the customer even if they are wrong\n- End with an invitation to discuss further (phone or DM)\n- Sound like a real person, not a corporate template\n\nWrite it in South African English.';
+  },
+  2: function(v) {
+    return 'Act as a business growth coach for a South African ' + (v.biz || 'small business') + '. I provide ' + (v.service || '[your service]') + ' and my ideal referral clients are ' + (v.client || '[describe your ideal client]') + '.\n\nWrite me 3 different ways to ask a happy client for a referral without feeling pushy:\n\n1. A casual in-person ask (what to say after delivering great work)\n2. A WhatsApp message (under 200 characters)\n3. An email (short, with a pre-written line they can forward)\n\nEach option must:\n- Reference specific value I delivered to that client\n- Make it easy for them to say yes (low pressure)\n- Offer to handle the introduction myself if they are uncomfortable\n- Include a genuine compliment about their business\n\nTone: warm, grateful, not salesy. South African English.';
+  },
+  3: function(v) {
+    return 'Act as a marketing strategist for a South African ' + (v.biz || 'small business') + ' based in ' + (v.area || '[your area]') + '. Business is quiet and I need to generate enquiries. My current offer is: ' + (v.offer || '[your offer]') + '.\n\nWrite me 3 different messages I can send today to generate enquiries. The options are:\n\n1. A WhatsApp broadcast to my existing customer list (create genuine urgency without yelling)\n2. A Facebook/Instagram post that gets people to DM me\n3. A short email or SMS to past clients who haven\'t ordered recently\n\nEach message must:\n- Give a real reason to act today (not fake urgency)\n- Be under 3 sentences for WhatsApp\n- Sound like me, not a marketing bot\n- Reference our location in ' + (v.area || '[your area]') + '\n\nTone: helpful, not desperate. South African English.';
+  },
+  4: function(v) {
+    return 'Act as a WhatsApp business manager for a South African ' + (v.biz || 'small business') + '. My customers frequently ask me these questions:\n\n' + (v.questions || '1. [common question 1]\n2. [common question 2]\n3. [common question 3]') + '\n\nWrite me 10 ready-to-use WhatsApp reply templates (each under 200 characters) that cover these questions and other common scenarios:\n\n1-3: Direct answers to each of my 3 most common questions\n4: "How do I pay?" (include EFT and PayFast or YOCO)\n5: "What are your hours?" \n6: "Do you deliver?" (include area list)\n7: "Can I get a discount?" (polite refusal that keeps the door open)\n8: "Send me a quote" (capture their details)\n9: "I\'m ready to buy" (clear next steps)\n10: "Do you do [something I don\'t offer]?" (helpful referral)\n\nTone: friendly but efficient. Leave blanks like [suburb] where I need to fill in. South African English.';
+  },
+  5: function(v) {
+    return 'Act as a sales coach for a South African ' + (v.biz || 'small business') + '. I sent a quote of ' + (v.amount || '[amount]') + ' for ' + (v.quote || '[what you quoted]') + ' to a prospect ' + (v.days || 5) + ' days ago. They said they would "think about it" and I haven\'t heard back.\n\nWrite me a 3-message follow-up sequence:\n\n1. A gentle check-in (day 1 after silence &mdash; assume they are busy, not ignoring you)\n2. A value reminder (day 3 &mdash; remind them of the specific problem your service solves)\n3. A final nudge (day 7 &mdash; create gentle closure without being pushy)\n\nEach message must:\n- Be sendable via WhatsApp or email\n- Feel like a professional follow-up, not a desperate chase\n- Give them an easy way to say "not now" without awkwardness\n- Reference the specific quote without re-pitching the whole thing\n\nTone: confident, helpful, respects their time. South African English.';
+  },
+  6: function(v) {
+    return 'Act as a sales negotiation coach for a South African ' + (v.biz || 'small business') + '. A client is interested in ' + (v.product || '[your product/service]') + ' priced at ' + (v.price || '[your price]') + '. Their response was: "' + (v.objection || 'It is more than I expected') + '."\n\nWrite me a response that:\n\n1. Validates their concern without immediately discounting\n2. Reframes the value &mdash; why it costs what it costs (specific to my business type)\n3. Offers 2-3 alternatives that keep the conversation going (payment plan, smaller scope, bundling)\n4. Gives me a script I can say or send verbatim\n\nInclude a version for each channel:\n- WhatsApp (under 200 characters)\n- In person / phone call (what to say)\n- Email (if they asked in writing)\n\nDo NOT use high-pressure sales tactics. South African English. Tone: understanding, helpful, solutions-oriented.';
+  },
+  7: function(v) {
+    var urgency = parseInt(v.days || 14) > 30 ? 'firm and direct' : parseInt(v.days || 14) > 14 ? 'professional but persistent' : 'gentle but clear';
+    var rel = v.relationship === 'strained' ? ', but maintain a professional tone. Do not apologise' : v.relationship === 'new' ? 'and welcoming &mdash; this is their first experience with your billing' : 'and warm, preserving the good relationship';
+    return 'Act as a debt collection specialist for a South African ' + (v.biz || 'small business') + '. A client owes R' + (v.amount || '[amount]') + ' and is ' + (v.days || 14) + ' days overdue. Our relationship is ' + v.relationship + '.\n\nWrite a 4-message payment chase sequence:\n\n1. Gentle nudge (assume they forgot &mdash; friendly)\n2. Follow-up (day 4 &mdash; slightly firmer, include payment link)\n3. Concerned (day 8 &mdash; offer payment plan option)\n4. Final notice (day 14 &mdash; mention service pause or interest if applicable)\n\nEach message: ' + urgency + ' and ' + rel + '\n\nInclude:\n- PayFast or EFT payment instructions\n- A one-sentence option for part payment if they are struggling\n- WhatsApp version (under 200 chars) and email version for each\n\nTone: professional, relationship-preserving. South African English.';
+  },
+  8: function(v) {
+    var timeMap = { '1month': 'about a month', '3months': 'a few months', '6months': 'about 5 months', 'year': 'over 6 months' };
+    var timeSince = timeMap[v.since] || 'a while';
+    return 'Act as a client relationship manager for a South African ' + (v.biz || 'small business') + '. A prospect was interested in ' + (v.lead || '[what they wanted]') + ' but we haven\'t spoken in ' + timeSince + '. I want to re-engage them without being pushy.\n\nWrite me 3 re-engagement options:\n\n1. A low-pressure "thinking of you" message (no pitch, just value)\n2. A value-driven message with a relevant update or new development in my business\n3. A direct but friendly "are you still interested?" message\n\nEach option must:\n- Reference our previous conversation naturally\n- Give them a reason to respond (a question, an offer, a relevant insight)\n- Be sendable via WhatsApp (under 3 sentences) or email (short paragraph)\n- Make it easy for them to say "not right now" without awkwardness\n\nTone: natural, not scripted. Like a friend checking in. South African English.';
+  },
+  9: function(v) {
+    var reasonText = v.reason === 'costs' ? 'my costs have gone up significantly (supplies, rent, or fuel)' : v.reason === 'demand' ? 'demand for my time has increased significantly and I need to prioritise clients who value what I do' : v.reason === 'inflation' ? 'I am adjusting prices in line with inflation and market rates' : 'I have improved my offering, invested in better materials/training, and now deliver more value than before';
+    return 'Act as a client communication consultant for a South African ' + (v.biz || 'small business') + '. I need to announce a price increase from ' + (v.oldprice || 'R[old price]') + ' to ' + (v.newprice || 'R[new price]') + '. The reason: ' + reasonText + '.\n\nWrite me 3 versions of the announcement:\n\n1. A personal email to existing regular clients (warm, grateful, gives them time)\n2. A WhatsApp broadcast (short, clear, under 150 characters)\n3. An in-person script (what to say when a client asks about pricing)\n\nEach version must:\n- Explain the reason honestly (SA clients appreciate transparency)\n- Give existing clients a grace period or loyalty discount (e.g. old price for 2 more months)\n- Emphasise the value they will continue to receive\n- Not apologise &mdash; price increases are normal and necessary\n\nTone: confident, transparent, appreciative. South African English.';
+  },
+  10: function(v) {
+    return 'Act as a professional executive assistant for a South African ' + (v.biz || 'small business') + '. I just had a client meeting and here are my rough notes:\n\n' + (v.notes || '[paste your notes here]') + '\n\nTurn these into a one-page professional meeting summary with:\n\n1. A 1-line email subject line\n2. What was discussed (3-5 bullet points, plain language)\n3. Decisions made (highlight these)\n4. Action items table: Who | What | By When\n5. Next meeting date or "TBC"\n\nFormat it so I can copy-paste directly into an email. No greetings or sign-offs needed. Keep it to one screen.\n\nTone: professional, clear, action-oriented. South African English.';
+  }
+};
+
+function updatePrompt(n) {
+  var prefix = 'p' + n;
+  var els = document.querySelectorAll('#' + prefix + ' [data-key]');
+  var vals = {};
+  els.forEach(function(el) { vals[el.getAttribute('data-key')] = el.value; });
+  var builder = PROMPTS[n];
+  var out = document.getElementById(prefix + '-out');
+  if (builder) {
+    var text = builder(vals);
+    out.textContent = text;
+  } else {
+    out.textContent = 'Select the options above to generate your prompt.';
+  }
+}
+
+function copyPrompt(id) {
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = el.parentElement.nextElementSibling;
+      if (btn && btn.classList.contains('copy-btn')) {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+      }
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    var btn = el.parentElement.nextElementSibling;
+    if (btn && btn.classList.contains('copy-btn')) {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+    }
+  }
 }
 </script>
 
