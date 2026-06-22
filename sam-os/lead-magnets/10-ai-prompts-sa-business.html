@@ -535,13 +535,116 @@
 
   /* Mobile */
   @media (max-width: 480px) {
-    .cover { padding: 44px 20px 36px; }
-    .cover h1 { font-size: 24px; }
+    .cover { padding: 48px 20px 40px; }
+    .cover h1 { font-size: 26px; }
     .cover .subtitle { font-size: 16px; }
     .prompt-card { padding: 20px; }
     .closing { padding: 28px 20px; }
     .data-wall { flex-direction: column; }
     .stat-badge { min-width: unset; }
+    .gs-plan td { padding: 10px 12px; font-size: 13px; }
+  }
+
+  /* Getting Started */
+  .getting-started {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
+  }
+  .getting-started h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .getting-started &gt; .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .gs-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+  .gs-step:last-of-type { margin-bottom: 28px; }
+  .gs-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .gs-step-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .gs-step-body p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .gs-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .gs-links a {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent-hover);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background var(--transition);
+  }
+  .gs-links a:hover { background: #fde68a; }
+  .gs-plan-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .gs-plan {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .gs-plan td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .gs-plan tr:last-child td { border-bottom: none; }
+  .gs-plan td:first-child {
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--accent);
+    width: 85px;
+  }
+  .gs-plan td:last-child { color: var(--text-secondary); }
+  .gs-closing {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
   }
 </style>
 </head>
@@ -1123,6 +1226,62 @@ function copyPrompt(id) {
   }
 }
 </script>
+
+<div class="container">
+
+<div class="getting-started">
+  <h2>Getting Started with AI</h2>
+  <p class="sub">Mobile instructions &mdash; 4 steps to using the prompts above, right now, on your phone.</p>
+
+  <div class="gs-step">
+    <span class="gs-number">1</span>
+    <div class="gs-step-body">
+      <h3>Download ChatGPT (free)</h3>
+      <p>No paid plan needed. The free tier runs all 10 prompts above. Get the app or use the web version:</p>
+      <div class="gs-links">
+        <a href="https://apps.apple.com/app/id6448311069" target="_blank">iPhone</a>
+        <a href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank">Android</a>
+        <a href="https://chat.openai.com" target="_blank">Web browser</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="gs-step">
+    <span class="gs-number">2</span>
+    <div class="gs-step-body">
+      <h3>Create an account</h3>
+      <p>Sign up with Google or email. Takes 30 seconds. Free tier is all you need. You can also use Claude, Gemini, or Copilot &mdash; the prompts above work with any AI tool.</p>
+    </div>
+  </div>
+
+  <div class="gs-step">
+    <span class="gs-number">3</span>
+    <div class="gs-step-body">
+      <h3>Copy a prompt from this page</h3>
+      <p>Pick the prompt that matches your biggest headache right now. Tap "Copy prompt," paste it into ChatGPT, then fill in the bits in [brackets] with your specific details.</p>
+    </div>
+  </div>
+
+  <div class="gs-step">
+    <span class="gs-number">4</span>
+    <div class="gs-step-body">
+      <h3>Refine the output</h3>
+      <p>ChatGPT gives you a first draft. Tell it what to change: "Shorten this," "Make it more formal," "Write it in plain English." The more specific you are, the better it gets.</p>
+    </div>
+  </div>
+
+  <div class="gs-plan-title">Your 7-minute implementation plan</div>
+  <table class="gs-plan">
+    <tr><td>Today</td><td>Pick 1 prompt that matches your biggest headache. Copy, paste, get your first output. Takes 7 minutes.</td></tr>
+    <tr><td>Tomorrow</td><td>Use the output in real life &mdash; send that WhatsApp template, post that caption. See how it feels.</td></tr>
+    <tr><td>Day 3</td><td>Pick a second prompt. You're now using AI for 2 tasks you used to do manually.</td></tr>
+    <tr><td>Day 7</td><td>You've automated or simplified at least 3 tasks. You've got back roughly 2 hours of your week.</td></tr>
+  </table>
+
+  <p class="gs-closing">No courses. No setup videos. Just pick a prompt and go.</p>
+</div>
+
+</div>
 
 </body>
 </html>
